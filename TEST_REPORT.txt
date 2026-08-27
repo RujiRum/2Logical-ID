@@ -1,0 +1,34 @@
+2logical ID V11 - Test Report
+
+Package validation:
+- ZIP extracts cleanly: PASS
+- index.html is at ZIP root: PASS
+- No assets folder required for badge front/back: PASS
+- Front badge embedded directly in index.html: PASS
+- Back badge embedded directly in index.html: PASS
+- Manifest JSON parses: PASS
+- icon-180.png dimensions: 180x180 PASS
+- icon-192.png dimensions: 192x192 PASS
+- icon-512.png dimensions: 512x512 PASS
+
+Rendered UI validation (Chromium, 430x932 mobile viewport):
+- Page title: 2logical ID PASS
+- Front image decodes/render size 1024x1536: PASS
+- Back image decodes/render size 1024x1536: PASS
+- No horizontal overflow: PASS
+- Show Back / Show Front control: PASS
+- Card tap flip: PASS
+- Maximize mode: PASS
+- Console errors during rendered interaction test: NONE
+- Front and back screenshots were visually inspected: PASS
+
+HTTP path validation from the extracted ZIP:
+- / : HTTP 200 PASS
+- /manifest.webmanifest : HTTP 200 PASS
+- /icon-180.png : HTTP 200 PASS
+- /2Logical-ID/ : HTTP 200 PASS
+- /2Logical-ID/manifest.webmanifest : HTTP 200 PASS
+- /2Logical-ID/icon-180.png : HTTP 200 PASS
+
+Important limitation:
+The test environment's Chromium policy blocks navigation to local HTTP/file URLs with ERR_BLOCKED_BY_ADMINISTRATOR. Therefore browser rendering was tested by injecting the exact extracted index.html into Chromium, while HTTP serving/path behavior was tested separately against the extracted package. The live GitHub Pages deployment cannot be truthfully certified until GitHub serves it.
